@@ -1,0 +1,92 @@
+# Credenciais, Segredos e Configurações Locais (CRÍTICO)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+*.pub
+*.cert
+*.crt
+*.pfx
+*.p12
+*.json-credentials
+*creds*
+*secret*
+*token*
+*password*
+!prompts/ # Permitir a pasta de prompts pública
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv
+venv/
+ENV/
+env/
+python-venv/
+
+# JavaScript / Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm
+.yarn
+.next
+out/
+.nuxt
+dist/
+tmp/
+.cache
+
+# Logs e Bancos de Dados locais
+*.log
+*.sqlite
+*.db
+
+# Sistema Operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editores de Código / IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# Outros arquivos temporários
+*.tmp
+*.bak
+*~
