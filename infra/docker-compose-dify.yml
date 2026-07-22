@@ -55,8 +55,8 @@ services:
     container_name: dify-web
     restart: always
     environment:
-      CONSOLE_API_URL: http://api:5001
-      APP_API_URL: http://api:5001
+      CONSOLE_API_URL: https://automatiza.cdc.org.br
+      APP_API_URL: https://automatiza.cdc.org.br
     depends_on:
       - api
     ports:

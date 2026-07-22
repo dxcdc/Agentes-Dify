@@ -49,7 +49,7 @@ Toda a documentação operacional e de governança do repositório está localiz
 ### 2. Recursos Reutilizáveis
 *   [prompts/](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/prompts/): Coleção de templates de prompts de sistema e meta-prompts validados para produção.
 *   [api/](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/api/): Boilerplates em linguagens populares (Python, JS) para integração com APIs comuns.
-*   [infra/](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/infra/): Arquivos de configuração de infraestrutura, DNS, cofres e rotinas de backup.
+*   [infra/](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/infra/): Arquivos de configuração de infraestrutura, DNS, cofres e rotinas de backup. Inclui o arquivo de configuração para o proxy reverso Nginx ([nginx-dify.conf](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/infra/nginx-dify.conf)).
 
 ---
 
