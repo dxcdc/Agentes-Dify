@@ -4,6 +4,14 @@ Bem-vindo ao repositório oficial **CDC Receitas**. Este espaço foi projetado p
 
 O objetivo principal deste repositório é garantir que o conhecimento técnico seja **preservável, portável, reutilizável e seguro por padrão**.
 
+### 🤖 O Papel do Dify no CDC
+
+A plataforma **Dify** foi adotada como o orquestrador central de LLMs no CDC. O Dify atua como o elo operacional que conecta nossos documentos e bases de conhecimento (Wiki em Markdown) aos provedores de inteligência artificial (como o Google AI Studio / Gemini 1.5 Flash). Ele gerencia o fluxo de RAG (*Retrieval-Augmented Generation*), o histórico de conversação e os limites de requisições, permitindo que a IA responda de forma contextualizada e direta em canais corporativos (via webhooks do Mattermost). 
+
+Com isso, a aplicação do Dify no CDC nos permite implantar e sustentar de forma integrada:
+*   **Agente de Consulta a Wiki**: Resposta automática a dúvidas operacionais e técnicas sem busca manual.
+*   **Agentes de Automação de Rotinas**: Execução de auditorias de backups, revisão automática de código (Code Review) e triagem inteligente de alertas de incidentes.
+
 ---
 
 ## 🗺️ Mapa Visual do Repositório
