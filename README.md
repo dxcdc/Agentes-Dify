@@ -37,6 +37,7 @@ graph TD
     Docs --> D8["plano_personalizacao.md (Roadmap de Expansão)"]
     Docs --> D9["prompt_ia.md (Contexto para IAs)"]
     Docs --> D10["governanca_agentes.md (Papéis & Maturidade)"]
+    Docs --> D11["arquitetura_dify_mattermost.md (Dify vs. Mattermost Agents)"]
 ```
 
 ---
@@ -55,6 +56,7 @@ Toda a documentação operacional e de governança do repositório está localiz
 *   [Plano de Personalização](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/plano_personalizacao.md): Roteiro para expansão e criação de novas categorias de receitas.
 *   [Prompt da IA Co-piloto](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/prompt_ia.md): Contexto fixo e regras permanentes para assistentes de inteligência artificial.
 *   [Governança de Agentes](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/governanca_agentes.md): Definição de papéis, responsabilidades e maturidade dos múltiplos agentes de IA do CDC.
+*   [Arquitetura Dify vs. Mattermost Agents](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/arquitetura_dify_mattermost.md): Análise técnica de responsabilidades e prevenção de conflitos.
 
 ### 2. Recursos Reutilizáveis
 *   [prompts/](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/prompts/): Coleção de templates de prompts de sistema e meta-prompts validados para produção.

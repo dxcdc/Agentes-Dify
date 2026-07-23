@@ -38,7 +38,8 @@ Receitas/
 │   ├── politica_backup.md             # Política de backup 3-2-1 e sincronização offsite
 │   ├── plano_personalizacao.md        # Roteiro de expansão e criação de novas categorias
 │   ├── prompt_ia.md                   # Contexto permanente para assistentes de IA no repositório
-│   └── governanca_agentes.md          # Papéis, responsabilidades e maturidade dos Agentes de IA
+│   ├── governanca_agentes.md          # Papéis, responsabilidades e maturidade dos Agentes de IA
+│   └── arquitetura_dify_mattermost.md # Divisão de responsabilidade técnica Dify vs. Mattermost Agents
 ├── prompts/                           # Prompts de sistema e meta-prompts
 ├── api/                               # Boilerplates de integração de APIs (Python, JS, etc.)
 └── infra/                             # Configurações de infraestrutura, backups, DNS e cofres
@@ -71,3 +72,4 @@ Abaixo estão listadas as Decisões de Arquitetura tomadas para este repositóri
 | **ADR-002** | 2026-07-21 | Adoção do modelo de 8 arquivos na pasta `docs/` (agora 9 arquivos com `prompt_ia.md`) | Padronização de governança DevOps da empresa. | **Aprovado** |
 | **ADR-003** | 2026-07-22 | Integração de Dify + Mattermost + Gemini | Criação de um assistente de IA conversacional corporativo e operacional com controle orçamentário. | **Aprovado** |
 | **ADR-004** | 2026-07-23 | Criação de documento de Governança de IA | Definição clara dos papéis e níveis de maturidade para dois agentes atuantes. | **Aprovado** |
+| **ADR-005** | 2026-07-23 | Fronteiras da Stack Dify vs. Mattermost Agents | Divisão clara para evitar duplicidade de RAG, históricos e custos do Gemini. | **Aprovado** |
