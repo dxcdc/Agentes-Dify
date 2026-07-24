@@ -1,0 +1,154 @@
+name: "🤖 Automação de GitHub Issues"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  criar-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Autenticar e Criar Issues Sem Duplicação
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+
+          # Função para verificar duplicação e criar a Issue caso não exista
+          create_issue_if_not_exists() {
+            local title="$1"
+            local body="$2"
+            local labels="$3"
+
+            echo "Verificando existência da Issue: '$title'..."
+            existing=$(gh issue list --state all --search "$title in:title" --json title --jq '.[].title' || true)
+
+            if echo "$existing" | grep -qF "$title"; then
+              echo "✅ Issue '$title' já existe no repositório. Pulando criação."
+            else
+              echo "🚀 Criando Issue: '$title'..."
+              gh issue create --title "$title" --body "$body" --label "$labels"
+            fi
+          }
+
+          # --- ISSUE 1: CONFIGURACAO E DEPLOY ---
+          title_1="[CONFIG] Deploy do Dify Self-Hosted e Proxy Reverso Nginx (automatiza.cdc.org.br)"
+          labels_1="infrastructure,dify"
+          body_1=$(cat << 'EOF'
+          ## 🎯 Objetivo
+          Subir os containers do Dify via Docker Compose e configurar o proxy reverso Nginx no subdomínio `https://automatiza.cdc.org.br/`.
+
+          ## ⚙️ Critérios de Aceite
+          - [ ] Criar arquivo `.env` a partir das especificações do [docker-compose-dify.yml](infra/docker-compose-dify.yml).
+          - [ ] Executar os containers: `docker compose -f infra/docker-compose-dify.yml up -d`.
+          - [ ] Aplicar as regras de proxy contidas no arquivo [nginx-dify.conf](infra/nginx-dify.conf).
+          - [ ] Gerar os certificados SSL gratuitos com o Certbot.
+          - [ ] Validar o acesso público à console web do Dify.
+
+          ## 📖 Referência
+          Consulte o manual técnico em [docs/ajuda_infra.md](docs/ajuda_infra.md).
+          EOF
+          )
+          create_issue_if_not_exists "$title_1" "$body_1" "$labels_1"
+
+          # --- ISSUE 2: INDEXACAO WIKI (RAG) ---
+          title_2="[FEAT] Indexação da Wiki em Markdown no Dify (Base Vetorial RAG)"
+          labels_2="agente-ia,dify"
+          body_2=$(cat << 'EOF'
+          ## 🎯 Objetivo
+          Conectar os documentos Markdown da Wiki corporativa ao módulo de RAG do Dify para respostas institucionais automáticas.
+
+          ## ⚙️ Critérios de Aceite
+          - [ ] Criar a aplicação no Dify do tipo *Chatbot / Workflow*.
+          - [ ] Importar e sincronizar os arquivos Markdown da Wiki como base de conhecimento.
+          - [ ] Configurar o provedor Gemini 1.5 Flash com controle de taxa de requisições.
+          - [ ] Importar e calibrar os prompts de sistema de [docs/prompt_ia.md](docs/prompt_ia.md).
+          - [ ] Validar a assertividade das respostas do RAG.
+
+          ## 📖 Referência
+          Consulte o roteiro de expansão em [docs/plano_personalizacao.md](docs/plano_personalizacao.md).
+          EOF
+          )
+          create_issue_if_not_exists "$title_2" "$body_2" "$labels_2"
+
+          # --- ISSUE 3: PONTE WEBHOOKS MATTERMOST ---
+          title_3="[FEAT] Implantação da Ponte de Webhooks (FastAPI) Mattermost ➔ Dify"
+          labels_3="api,mattermost"
+          body_3=$(cat << 'EOF'
+          ## 🎯 Objetivo
+          Implantar a API intermediária em Python (FastAPI) para encaminhar solicitações dos canais do Mattermost ao Dify.
+
+          ## ⚙️ Critérios de Aceite
+          - [ ] Fazer o deploy da aplicação descrita em [api/webhook-bridge/README.md](api/webhook-bridge/README.md).
+          - [ ] Configurar o *Outgoing Webhook* no Mattermost apontando para a ponte.
+          - [ ] Configurar o *Incoming Webhook* no Mattermost e registrar a URL nas variáveis de ambiente.
+          - [ ] Validar mensagens de teste com o bot `@cdc-conhecimento`.
+
+          ## 📖 Referência
+          Consulte os payloads de exemplo em [docs/ajuda_infra.md](docs/ajuda_infra.md).
+          EOF
+          )
+          create_issue_if_not_exists "$title_3" "$body_3" "$labels_3"
+
+          # --- ISSUE 4: HOMOLOGACAO MATTERMOST AGENTS ---
+          title_4="[ARCH] Homologação do Plugin Mattermost Agents para Resumos de Canais"
+          labels_4="mattermost,governança"
+          body_4=$(cat << 'EOF'
+          ## 🎯 Objetivo
+          Testar o plugin nativo Mattermost Agents para resumos de threads/canais e transcrição, mantendo a Wiki exclusivamente no Dify.
+
+          ## ⚙️ Critérios de Aceite
+          - [ ] Habilitar o plugin *Mattermost Agents* em ambiente de homologação.
+          - [ ] Validar a criação automática de resumos de conversas e extração de tarefas.
+          - [ ] Garantir que a Wiki não seja duplamente indexada no pgvector do Agents.
+
+          ## 📖 Referência
+          Consulte as diretrizes arquiteturais em [docs/arquitetura_dify_mattermost.md](docs/arquitetura_dify_mattermost.md).
+          EOF
+          )
+          create_issue_if_not_exists "$title_4" "$body_4" "$labels_4"
+
+          # --- ISSUE 5: INTEGRACAO MCP ---
+          title_5="[ARCH] Integração do Dify como Servidor MCP no Mattermost Agents"
+          labels_5="mcp,agente-ia"
+          body_5=$(cat << 'EOF'
+          ## 🎯 Objetivo
+          Expor as aplicações do Dify via protocolo MCP para consumo direto e transparente pelo Mattermost Agents.
+
+          ## ⚙️ Critérios de Aceite
+          - [ ] Habilitar a publicação de Servidor MCP na aplicação institucional do Dify.
+          - [ ] Registrar a ferramenta MCP no painel do Mattermost Agents.
+          - [ ] Conceder permissão ao bot `@assistente-cdc` para consultar a ferramenta MCP.
+
+          ## 📖 Referência
+          Consulte o fluxo completo em [docs/arquitetura_dify_mattermost.md](docs/arquitetura_dify_mattermost.md).
+          EOF
+          )
+          create_issue_if_not_exists "$title_5" "$body_5" "$labels_5"
+
+          # --- ISSUE 6: SIMULACAO DE BACKUP ---
+          title_6="[CONFIG] Simulação Semestral de Recuperação de Backup (3-2-1)"
+          labels_6="infrastructure,governança"
+          body_6=$(cat << 'EOF'
+          ## 🎯 Objetivo
+          Executar a simulação de restauração dos snapshots de dados para homologar a política de segurança de dados.
+
+          ## ⚙️ Critérios de Aceite
+          - [ ] Baixar o backup criptografado do bucket externo em nuvem.
+          - [ ] Descriptografar e restaurar a base em ambiente de testes isolado.
+          - [ ] Registrar o histórico da execução em [docs/postmortem.md](docs/postmortem.md).
+
+          ## 📖 Referência
+          Consulte a norma em [docs/politica_backup.md](docs/politica_backup.md).
+          EOF
+          )
+          create_issue_if_not_exists "$title_6" "$body_6" "$labels_6"
