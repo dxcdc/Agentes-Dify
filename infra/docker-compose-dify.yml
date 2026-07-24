@@ -40,7 +40,7 @@ services:
       - redis
 
   # Interface Frontend Web do Dify
-  web:
+  dify:
     image: langgenius/dify-web:latest
     restart: always
     environment:
