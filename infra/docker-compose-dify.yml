@@ -5,31 +5,24 @@ services:
   # Banco de Dados Relacional (PostgreSQL)
   db:
     image: postgres:15-alpine
-    container_name: dify-db
     restart: always
     environment:
       POSTGRES_DB: dify
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: <POSTGRES_PASSWORD_REPLACE_ME> # Substituir localmente por uma senha forte
+      POSTGRES_PASSWORD: <POSTGRES_PASSWORD_REPLACE_ME>
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
 
   # Cache e Filas de Mensagens (Redis)
   redis:
     image: redis:6-alpine
-    container_name: dify-redis
     restart: always
     volumes:
       - redisdata:/data
-    ports:
-      - "6379:6379"
 
   # API Backend do Dify
   api:
     image: langgenius/dify-api:latest
-    container_name: dify-api
     restart: always
     environment:
       INIT_DB: "true"
@@ -41,26 +34,20 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       CELERY_WORKER_MAX_TASKS_PER_CHILD: 10
-      # Definição de Chaves de Encriptação internas do Dify
       SECRET_KEY: <GENERATE_SECRET_KEY_REPLACE_ME>
     depends_on:
       - db
       - redis
-    ports:
-      - "5001:5001"
 
   # Interface Frontend Web do Dify
   web:
     image: langgenius/dify-web:latest
-    container_name: dify-web
     restart: always
     environment:
       CONSOLE_API_URL: https://automatiza.cdc.org.br
       APP_API_URL: https://automatiza.cdc.org.br
     depends_on:
       - api
-    ports:
-      - "3005:3000"
 
 volumes:
   pgdata:
