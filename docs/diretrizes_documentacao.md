@@ -75,3 +75,4 @@ Abaixo estão listadas as Decisões de Arquitetura tomadas para este repositóri
 | **ADR-004** | 2026-07-23 | Criação de documento de Governança de IA | Definição clara dos papéis e níveis de maturidade para dois agentes atuantes. | **Aprovado** |
 | **ADR-005** | 2026-07-23 | Fronteiras da Stack Dify vs. Mattermost Agents | Divisão clara para evitar duplicidade de RAG, históricos e custos do Gemini. | **Aprovado** |
 | **ADR-006** | 2026-07-24 | Adoção do catálogo de Issues e Issue Templates | Padronização de abertura e rastreamento de tarefas no GitHub. | **Aprovado** |
+| **ADR-007** | 2026-07-24 | Automação de criação de Issues via GitHub Actions | Garantir o cadastro e antiduplicação de tarefas automaticamente no GitHub. | **Aprovado** |

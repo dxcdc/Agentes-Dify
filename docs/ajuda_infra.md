@@ -105,3 +105,14 @@ Para publicar a resposta gerada pelo Gemini + Dify de volta no canal do Mattermo
 }
 ```
 
+---
+
+## 5. Automação CI/CD & GitHub Actions
+
+O repositório conta com uma rotina de automação em [.github/workflows/automatizar_issues.yml](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/.github/workflows/automatizar_issues.yml):
+
+*   **Disparo Automático**: É acionado a cada `push` efetuado na branch `main` ou via execução manual no GitHub (`workflow_dispatch`).
+*   **Gestão de Tarefas (Issues)**: Utiliza a ferramenta GitHub CLI para ler as especificações de [docs/issues_roadmap.md](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/issues_roadmap.md) e cadastrar as tarefas na aba *Issues* do GitHub.
+*   **Verificação Antiduplicação**: O script verifica a existência prévia de cada Issue pelo título para evitar cadastros repetidos em commits subsequentes.
+
+
