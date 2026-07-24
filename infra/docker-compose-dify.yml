@@ -48,8 +48,6 @@ services:
       APP_API_URL: https://automatiza.cdc.org.br
     depends_on:
       - api
-    ports:
-      - "3005:3000"
 
 volumes:
   pgdata:
