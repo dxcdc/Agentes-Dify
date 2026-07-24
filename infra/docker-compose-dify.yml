@@ -44,8 +44,8 @@ services:
     image: langgenius/dify-web:latest
     restart: always
     environment:
-      CONSOLE_API_URL: https://automatiza.cdc.org.br
-      APP_API_URL: https://automatiza.cdc.org.br
+      CONSOLE_API_URL: ''
+      APP_API_URL: ''
     depends_on:
       - api
 
