@@ -17,13 +17,23 @@ jobs:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
 
-      - name: Autenticar e Criar Issues Sem Duplicação
+      - name: Autenticar, Garantir Rótulos e Criar Issues
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
 
-          # Função para verificar duplicação e criar a Issue caso não exista
+          # 1. Criar/Garantir a existência dos rótulos (labels) no repositório GitHub
+          echo "🏷️ Garantindo que os rótulos (labels) existam no GitHub..."
+          gh label create "infrastructure" --color "0E8A16" --description "Tarefas e receitas de infraestrutura" --force || true
+          gh label create "dify" --color "1D76DB" --description "Integração e fluxos do Dify" --force || true
+          gh label create "agente-ia" --color "5319E7" --description "Agentes de Inteligência Artificial" --force || true
+          gh label create "api" --color "D93F0B" --description "Boilerplates e rotas de API" --force || true
+          gh label create "mattermost" --color "00838F" --description "Integração com o chat Mattermost" --force || true
+          gh label create "governança" --color "006B75" --description "Diretrizes e normas corporativas" --force || true
+          gh label create "mcp" --color "FBCA04" --description "Model Context Protocol" --force || true
+
+          # 2. Função para verificar duplicação e criar a Issue caso não exista
           create_issue_if_not_exists() {
             local title="$1"
             local body="$2"
@@ -36,7 +46,8 @@ jobs:
               echo "✅ Issue '$title' já existe no repositório. Pulando criação."
             else
               echo "🚀 Criando Issue: '$title'..."
-              gh issue create --title "$title" --body "$body" --label "$labels"
+              gh issue create --title "$title" --body "$body" --label "$labels" || \
+              gh issue create --title "$title" --body "$body"
             fi
           }
 
