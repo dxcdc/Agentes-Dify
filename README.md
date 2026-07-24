@@ -38,6 +38,7 @@ graph TD
     Docs --> D9["prompt_ia.md (Contexto para IAs)"]
     Docs --> D10["governanca_agentes.md (Papéis & Maturidade)"]
     Docs --> D11["arquitetura_dify_mattermost.md (Dify vs. Mattermost Agents)"]
+    Docs --> D12["issues_roadmap.md (Roteiro de Issues)"]
 ```
 
 ---
@@ -57,6 +58,7 @@ Toda a documentação operacional e de governança do repositório está localiz
 *   [Prompt da IA Co-piloto](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/prompt_ia.md): Contexto fixo e regras permanentes para assistentes de inteligência artificial.
 *   [Governança de Agentes](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/governanca_agentes.md): Definição de papéis, responsabilidades e maturidade dos múltiplos agentes de IA do CDC.
 *   [Arquitetura Dify vs. Mattermost Agents](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/arquitetura_dify_mattermost.md): Análise técnica de responsabilidades e prevenção de conflitos.
+*   [Roteiro de Issues & Backlog](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/docs/issues_roadmap.md): Catálogo de tarefas estruturadas e prontas para acompanhamento no GitHub.
 
 ### 2. Recursos Reutilizáveis
 *   [prompts/](file:///home/vier/Documentos/Code/CDC/Agentes%20de%20IA/prompts/): Coleção de templates de prompts de sistema e meta-prompts validados para produção.
